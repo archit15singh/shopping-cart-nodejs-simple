@@ -27,8 +27,7 @@ npm test
 Or using Docker:
 
 ```bash
-docker build -t shopping-cart-nodejs-simple-app .
-docker run -v $(pwd):/app shopping-cart-nodejs-simple-app
+docker-compose up --build
 ```
 
 This command will build the Docker image, run the tests, and generate the coverage report.
