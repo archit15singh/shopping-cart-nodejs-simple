@@ -2,14 +2,12 @@
   "name": "shopping-cart-nodejs-simple",
   "version": "1.0.0",
   "description": "simple",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "jest --config jest.config.js"
   },
   "jest": {
-    "testEnvironment": "node",
-    "transform": {}
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
