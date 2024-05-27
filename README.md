@@ -19,11 +19,13 @@ This project implements a shopping cart with basic functionalities using Node.js
 ## Running Tests
 
 Run the unit tests using Jest:
+
 ```bash
 npm test
 ```
 
 Or using Docker:
+
 ```bash
 docker build -t shopping-cart-nodejs-simple-app .
 docker run -v $(pwd):/app shopping-cart-nodejs-simple-app
@@ -40,20 +42,20 @@ After running the tests, you can view the coverage reports in the `coverage` dir
 ```bash
 ❯ docker-compose up --build
 Attaching to app-1
-app-1  | 
+app-1  |
 app-1  | > shopping-cart-nodejs-simple@1.0.0 test
 app-1  | > jest --config jest.config.js
-app-1  | 
+app-1  |
 app-1  | PASS ./shoppingCart.test.mjs
 app-1  |   Shopping Cart
 app-1  |     ✓ should add a product to the cart and update quantities (2 ms)
 app-1  |     ✓ should correctly calculate subtotal, tax, and total
-app-1  | 
+app-1  |
 app-1  | ------------------|---------|----------|---------|---------|-------------------
-app-1  | File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+app-1  | File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 app-1  | ------------------|---------|----------|---------|---------|-------------------
-app-1  | All files         |     100 |      100 |     100 |     100 |                   
-app-1  |  shoppingCart.mjs |     100 |      100 |     100 |     100 |                   
+app-1  | All files         |     100 |      100 |     100 |     100 |
+app-1  |  shoppingCart.mjs |     100 |      100 |     100 |     100 |
 app-1  | ------------------|---------|----------|---------|---------|-------------------
 app-1  | Test Suites: 1 passed, 1 total
 app-1  | Tests:       2 passed, 2 total

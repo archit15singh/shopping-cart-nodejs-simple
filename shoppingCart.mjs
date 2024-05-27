@@ -1,24 +1,27 @@
-import axios from 'axios';
+import axios from "axios";
 
 class ShoppingCart {
   constructor() {
     this.items = [];
-    this.subtotal = 0;
     this.taxRate = 0.125;
+    this.subtotal = 0;
+    this.tax = 0;
     this.total = 0;
   }
 
   async addProduct(productName, quantity) {
     const price = await this.fetchPrice(productName);
-    const product = this.items.find(item => item.product === productName);
+    const existingProduct = this.items.find(
+      (item) => item.product === productName,
+    );
 
-    if (product) {
-      product.quantity += quantity;
+    if (existingProduct) {
+      existingProduct.quantity += quantity;
     } else {
       this.items.push({ product: productName, quantity, price });
     }
 
-    this.calculateTotals();
+    this.updateTotals();
   }
 
   async fetchPrice(productName) {
@@ -27,10 +30,28 @@ class ShoppingCart {
     return response.data.price;
   }
 
-  calculateTotals() {
-    this.subtotal = this.items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-    this.tax = (this.subtotal * this.taxRate).toFixed(2);
-    this.total = (parseFloat(this.subtotal) + parseFloat(this.tax)).toFixed(2);
+  updateTotals() {
+    this.subtotal = this.calculateSubtotal();
+    this.tax = this.calculateTax();
+    this.total = this.calculateTotal();
+  }
+
+  calculateSubtotal() {
+    const subtotal = this.items.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+    );
+    return subtotal.toFixed(2);
+  }
+
+  calculateTax() {
+    const tax = this.subtotal * this.taxRate;
+    return tax.toFixed(2);
+  }
+
+  calculateTotal() {
+    const total = parseFloat(this.subtotal) + parseFloat(this.tax);
+    return total.toFixed(2);
   }
 }
 
