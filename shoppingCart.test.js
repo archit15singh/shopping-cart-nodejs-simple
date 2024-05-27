@@ -1,4 +1,4 @@
-import ShoppingCart from "./shoppingCart.mjs";
+import ShoppingCart from "./shoppingCart.js";
 import axios from "axios";
 
 jest.mock("axios");
