@@ -10,11 +10,12 @@ This project implements a shopping cart with basic functionalities using Node.js
 
 ## Installation
 
-1. Clone the repository.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+Clone the repository.
+
+Install dependencies:
+```bash
+npm install
+```
 
 ## Running Tests
 
