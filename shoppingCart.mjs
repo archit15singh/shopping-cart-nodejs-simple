@@ -10,24 +10,40 @@ class ShoppingCart {
   }
 
   async addProduct(productName, quantity) {
-    const price = await this.fetchPrice(productName);
-    const existingProduct = this.items.find(
-      (item) => item.product === productName,
-    );
+    try {
+      const price = await this.fetchPrice(productName);
+      const existingProduct = this.items.find(
+        (item) => item.product === productName,
+      );
 
-    if (existingProduct) {
-      existingProduct.quantity += quantity;
-    } else {
-      this.items.push({ product: productName, quantity, price });
+      if (existingProduct) {
+        existingProduct.quantity += quantity;
+      } else {
+        this.items.push({ product: productName, quantity, price });
+      }
+
+      this.updateTotals();
+    } catch (error) {
+      console.error(`Failed to add product: ${error.message}`);
+      throw error;
     }
-
-    this.updateTotals();
   }
 
   async fetchPrice(productName) {
-    const url = `https://equalexperts.github.io/backend-take-home-test-data/${productName}.json`;
-    const response = await axios.get(url);
-    return response.data.price;
+    try {
+      const url = `https://equalexperts.github.io/backend-take-home-test-data/${productName}.json`;
+      const response = await axios.get(url);
+      if (response.data && typeof response.data.price === "number") {
+        return response.data.price;
+      } else {
+        throw new Error("Invalid response structure");
+      }
+    } catch (error) {
+      console.error(
+        `Failed to fetch price for ${productName}: ${error.message}`,
+      );
+      throw error;
+    }
   }
 
   updateTotals() {

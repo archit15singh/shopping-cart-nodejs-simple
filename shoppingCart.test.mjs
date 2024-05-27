@@ -121,4 +121,13 @@ describe("Shopping Cart", () => {
     expect(cart.tax).toBe("0.29");
     expect(cart.total).toBe("2.62");
   });
+  test("should handle unexpected response structure", async () => {
+    axios.get.mockResolvedValue({
+      data: { productName: "Corn Flakes", cost: 2.52 },
+    });
+
+    await expect(cart.addProduct("cornflakes", 1)).rejects.toThrow(
+      "Invalid response structure",
+    );
+  });
 });
