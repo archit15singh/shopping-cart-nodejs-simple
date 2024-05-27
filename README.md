@@ -1,7 +1,5 @@
 # Shopping Cart
 
-This project implements a shopping cart with basic functionalities using Node.js, ES6, TDD, and OOP principles.
-
 ## Features
 
 - Add a product to the cart specifying the product name and quantity.
